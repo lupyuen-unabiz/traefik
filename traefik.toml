@@ -38,13 +38,15 @@ defaultEntryPoints = ["default"]
     # Web proxy
     [entryPoints.http]
     address = ":8080"
-    # whiteListSourceRange = ["0.0.0.0/0"]
-    compress = true
 
-        [entryPoints.http.redirect]
-        passHostHeader = true
-        regex = "^http://(.*)/(.*)"
-        replacement = "http://unabellgraph.appspot.com/$2"
+    # whiteListSourceRange = ["0.0.0.0/0"]
+    # compress = true
+
+        # [entryPoints.http.redirect]
+        # entryPoint = "http"
+        # passHostHeader = true
+        # regex = "^http://(.*)/(.*)"
+        # replacement = "http://unabellgraph.appspot.com/$2"
 
     # API
     [entryPoints.api]
@@ -64,11 +66,10 @@ defaultEntryPoints = ["default"]
 
 [frontends]
 
-  # [frontends.frontend1]
-  # entryPoint = "http"
-  # passHostHeader = true
-
-  ## backend = "backend1"
+  [frontends.frontend1]
+  entryPoint = "http"
+  passHostHeader = true
+  backend = "backend1"
 
       # [frontends.frontend1.redirect]
       # entryPoint = "http"
@@ -84,21 +85,23 @@ defaultEntryPoints = ["default"]
 
   [backends.backend1]
 
-    [backends.backend1.circuitbreaker]
-    expression = "NetworkErrorRatio() > 0.5"
-
     [backends.backend1.servers.server1]
-    url = "http://unabellgraph.appspot.com:80"
-    weight = 10
+    url = "http://74.125.200.153:80"
 
-  [backends.backend2]
+    # url = "http://unabellgraph.appspot.com:80"
+    # weight = 10
 
-    [backends.backend2.circuitbreaker]
-    expression = "NetworkErrorRatio() > 0.5"
+    # [backends.backend1.circuitbreaker]
+    # expression = "NetworkErrorRatio() > 0.5"
 
-    [backends.backend2.servers.server2]
-    url = "http://test-unabell-mobile-server.appspot.com:80"
-    weight = 10
+  # [backends.backend2]
+
+    # [backends.backend2.circuitbreaker]
+    # expression = "NetworkErrorRatio() > 0.5"
+
+    # [backends.backend2.servers.server2]
+    # url = "http://test-unabell-mobile-server.appspot.com:80"
+    # weight = 10
 
 ################################################################
 # Traefik logs configuration
