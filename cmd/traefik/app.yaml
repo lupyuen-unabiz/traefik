@@ -30,3 +30,6 @@ readiness_check:
 # Define credentials as environment variables
 #includes:
 #- env.yaml
+
+skip_files:
+- ^vendor/.*$

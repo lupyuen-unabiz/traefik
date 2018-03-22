@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="traefik cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" singleton="true">
+    <module name="traefik" />
+    <working_directory value="$PROJECT_DIR$/cmd/traefik" />
+    <go_parameters value="-i" />
+    <kind value="FILE" />
+    <filePath value="$PROJECT_DIR$/cmd/traefik/traefik.go" />
+    <directory value="$PROJECT_DIR$/" />
+    <output_directory value="$PROJECT_DIR$/cmd/traefik" />
+    <method />
+  </configuration>
+</component>
