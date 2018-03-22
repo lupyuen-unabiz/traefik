@@ -199,7 +199,7 @@ format = "json"
   [backends.backend1]
 
     [backends.backend1.servers.server1]
-    url = "http://unabellgraph.appspot.com:80"
+    url = "http://nodejs-dot-unabellgraph.appspot.com:80"
     weight = 10
 
     [backends.backend1.loadBalancer]
