@@ -1,4 +1,4 @@
-################################################################
+################################################################ region
 # Global configuration
 ################################################################
 
@@ -25,7 +25,7 @@ logLevel = "DEBUG"
 
 defaultEntryPoints = ["default"]
 
-################################################################
+################################################################ endregion
 # Entrypoints configuration
 ################################################################
 
@@ -38,6 +38,7 @@ defaultEntryPoints = ["default"]
     # Web proxy
     [entryPoints.http]
     address = ":8080"
+    passHostHeader = true
 
     # whiteListSourceRange = ["0.0.0.0/0"]
     # compress = true
@@ -110,8 +111,8 @@ defaultEntryPoints = ["default"]
 #
 # Optional
 # Default: "common"
-#
-# format = "common"
+
+format = "json"
 
 ################################################################
 # API and dashboard configuration
@@ -190,7 +191,6 @@ defaultEntryPoints = ["default"]
   [frontends.frontend1]
   backend = "backend1"
   passHostHeader = true
-  passTLSCert = true
   entrypoints = ["http"]
 
       # [frontends.frontend1.redirect]
@@ -208,13 +208,8 @@ defaultEntryPoints = ["default"]
   [backends.backend1]
 
     [backends.backend1.servers.server1]
-    url = "http://74.125.200.153:80"
+    url = "http://unabellgraph.appspot.com:80"
     weight = 10
-
-    # url = "http://unabellgraph.appspot.com:80"
-
-    # [backends.backend1.circuitbreaker]
-    # expression = "NetworkErrorRatio() > 0.5"
 
     [backends.backend1.loadBalancer]
       method = "drr"
@@ -230,6 +225,9 @@ defaultEntryPoints = ["default"]
       # path = "/health"
       # port = 88
       # interval = "30s"
+
+    # [backends.backend1.circuitbreaker]
+    # expression = "NetworkErrorRatio() > 0.5"
 
   # [backends.backend2]
 
