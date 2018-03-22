@@ -209,12 +209,27 @@ defaultEntryPoints = ["default"]
 
     [backends.backend1.servers.server1]
     url = "http://74.125.200.153:80"
+    weight = 10
 
     # url = "http://unabellgraph.appspot.com:80"
-    # weight = 10
 
     # [backends.backend1.circuitbreaker]
     # expression = "NetworkErrorRatio() > 0.5"
+
+    [backends.backend1.loadBalancer]
+      method = "drr"
+
+      # [backends.backend1.loadBalancer.stickiness]
+        # cookieName = "foobar"
+
+    # [backends.backend1.maxConn]
+      # amount = 10
+      # extractorfunc = "request.host"
+
+    # [backends.backend1.healthCheck]
+      # path = "/health"
+      # port = 88
+      # interval = "30s"
 
   # [backends.backend2]
 
