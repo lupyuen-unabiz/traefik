@@ -67,9 +67,10 @@ defaultEntryPoints = ["default"]
 [frontends]
 
   [frontends.frontend1]
-  entryPoint = "http"
-  passHostHeader = true
   backend = "backend1"
+  passHostHeader = true
+  passTLSCert = true
+  entrypoints = ["http"]
 
       # [frontends.frontend1.redirect]
       # entryPoint = "http"

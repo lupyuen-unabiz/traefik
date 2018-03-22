@@ -3,6 +3,7 @@
     <words>
       <w>backends</w>
       <w>circuitbreaker</w>
+      <w>entrypoints</w>
       <w>exposedbydefault</w>
       <w>filepath</w>
       <w>frontends</w>
