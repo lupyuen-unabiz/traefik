@@ -37,7 +37,7 @@ defaultEntryPoints = ["http"]
     address = ":8080"
 
     [entryPoints.api]
-      address = ":8081"
+    address = ":8081"
 
 ################################################################
 # Frontends configuration
@@ -132,15 +132,15 @@ defaultEntryPoints = ["http"]
   #
   # Optional
   # Default: "traefik"
-  #
-  # entryPoint = "traefik"
+
+  entryPoint = "traefik"
 
   # Enabled Dashboard
   #
   # Optional
   # Default: true
-  #
-  # dashboard = false
+
+  dashboard = true
 
 ################################################################
 # Ping configuration
@@ -153,8 +153,8 @@ defaultEntryPoints = ["http"]
   #
   # Optional
   # Default: "traefik"
-  #
-  # entryPoint = "traefik"
+
+  entryPoint = "traefik"
 
 ################################################################
 # Docker configuration backend
