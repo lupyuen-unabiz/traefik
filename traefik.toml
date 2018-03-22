@@ -38,7 +38,7 @@ defaultEntryPoints = ["default"]
     # Web proxy
     [entryPoints.http]
     address = ":8080"
-    whiteListSourceRange = ["0.0.0.0/32"]
+    # whiteListSourceRange = ["0.0.0.0/0"]
     compress = true
 
         [entryPoints.http.redirect]
