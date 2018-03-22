@@ -38,10 +38,10 @@ defaultEntryPoints = ["default"]
     # Web proxy
     [entryPoints.http]
     address = ":8080"
+    compress = true
 
     # passHostHeader = true
     # whiteListSourceRange = ["0.0.0.0/0"]
-    # compress = true
 
         # [entryPoints.http.redirect]
         # entryPoint = "http"
@@ -159,38 +159,9 @@ format = "json"
 
   entryPoint = "ping"
 
-################################################################
-# Docker configuration backend
-################################################################
-
-# Enable Docker configuration backend
-# [docker]
-#
-# Docker server endpoint. Can be a tcp or a unix socket endpoint.
-#
-# Required
-# Default: "unix:///var/run/docker.sock"
-#
-# endpoint = "tcp://10.10.10.10:2375"
-
-# Default domain used.
-# Can be overridden by setting the "traefik.domain" label on a container.
-#
-# Optional
-# Default: ""
-#
-# domain = "docker.localhost"
-
-# Expose containers by default in traefik
-#
-# Optional
-# Default: true
-#
-# exposedbydefault = false
-
 # [file] Must be at the end
-[file]
 
+[file]
 
 ################################################################
 # Frontends configuration
