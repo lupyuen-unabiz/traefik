@@ -153,7 +153,7 @@ func (s *DynamoDBSuite) TestSimpleConfiguration(c *check.C) {
 	c.Assert(err, checker.IsNil)
 	defer cmd.Process.Kill()
 
-	err = try.GetRequest("http://127.0.0.1:8081/api/providers", 120*time.Second, try.BodyContains("Host:test.traefik.io"))
+	err = try.GetRequest("http://127.0.0.1:9090/api/providers", 120*time.Second, try.BodyContains("Host:test.traefik.io"))
 	c.Assert(err, checker.IsNil)
 
 	req, err := http.NewRequest(http.MethodGet, "http://127.0.0.1:8080", nil)

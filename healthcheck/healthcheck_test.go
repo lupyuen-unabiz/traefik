@@ -152,7 +152,7 @@ func TestNewRequest(t *testing.T) {
 		{
 			desc:     "port override",
 			host:     "backend2:80",
-			port:     8080,
+			port:     9090,
 			path:     "/test",
 			expected: "http://backend2:8080/test",
 		},
@@ -166,7 +166,7 @@ func TestNewRequest(t *testing.T) {
 		{
 			desc:     "port override with no port in host",
 			host:     "backend2",
-			port:     8080,
+			port:     9090,
 			path:     "/health",
 			expected: "http://backend2:8080/health",
 		},

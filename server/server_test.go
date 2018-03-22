@@ -1,7 +1,6 @@
 package server
 
 import (
-	"context"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -9,6 +8,8 @@ import (
 	"reflect"
 	"testing"
 	"time"
+
+	"context"
 
 	"github.com/containous/flaeg"
 	"github.com/containous/mux"

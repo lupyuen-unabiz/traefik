@@ -7,6 +7,7 @@
 # Optional
 # Default: false
 #
+
 debug = true
 
 # Log levelcd cmd
@@ -14,6 +15,7 @@ debug = true
 # Optional
 # Default: "ERROR"
 #
+
 logLevel = "DEBUG"
 
 # Entrypoints to be used by frontends that do not specify any entrypoint.
@@ -22,6 +24,7 @@ logLevel = "DEBUG"
 # Optional
 # Default: ["http"]
 #
+
 defaultEntryPoints = ["http"]
 
 ################################################################
@@ -32,11 +35,9 @@ defaultEntryPoints = ["http"]
 #
 # Optional
 # Default:
+
 [entryPoints]
     [entryPoints.http]
-    # Dev
-    # address = ":4000"
-    # Prod
     address = ":8080"
 
     [entryPoints.api]

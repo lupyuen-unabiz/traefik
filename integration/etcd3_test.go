@@ -26,7 +26,7 @@ const (
 	ipWhoami04 = "172.18.0.6"
 
 	traefikEtcdURL    = "http://127.0.0.1:8000/"
-	traefikWebEtcdURL = "http://127.0.0.1:8081/"
+	traefikWebEtcdURL = "http://127.0.0.1:9090/"
 )
 
 // Etcd test suites (using libcompose)
@@ -533,7 +533,7 @@ func (s *Etcd3Suite) TestSNIDynamicTlsConfig(c *check.C) {
 	defer cmd.Process.Kill()
 
 	// wait for Træfik
-	err = try.GetRequest("http://127.0.0.1:8081/api/providers", 60*time.Second, try.BodyContains(string("MIIEpQIBAAKCAQEA1RducBK6EiFDv3TYB8ZcrfKWRVaSfHzWicO3J5WdST9oS7h")))
+	err = try.GetRequest("http://127.0.0.1:9090/api/providers", 60*time.Second, try.BodyContains(string("MIIEpQIBAAKCAQEA1RducBK6EiFDv3TYB8ZcrfKWRVaSfHzWicO3J5WdST9oS7h")))
 	c.Assert(err, checker.IsNil)
 
 	req, err := http.NewRequest(http.MethodGet, "https://127.0.0.1:4443/", nil)
@@ -563,7 +563,7 @@ func (s *Etcd3Suite) TestSNIDynamicTlsConfig(c *check.C) {
 	c.Assert(err, checker.IsNil)
 
 	// waiting for Træfik to pull configuration
-	err = try.GetRequest("http://127.0.0.1:8081/api/providers", 30*time.Second, try.BodyContains("MIIEogIBAAKCAQEAvG9kL+vF57+MICehzbqcQAUlAOSl5r"))
+	err = try.GetRequest("http://127.0.0.1:9090/api/providers", 30*time.Second, try.BodyContains("MIIEogIBAAKCAQEAvG9kL+vF57+MICehzbqcQAUlAOSl5r"))
 	c.Assert(err, checker.IsNil)
 
 	req, err = http.NewRequest(http.MethodGet, "https://127.0.0.1:4443/", nil)

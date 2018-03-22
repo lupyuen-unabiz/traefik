@@ -178,7 +178,7 @@ func (gc *GlobalConfiguration) SetEffectiveConfiguration(configFile string) {
 		(gc.Metrics != nil && gc.Metrics.Prometheus != nil && gc.Metrics.Prometheus.EntryPoint == DefaultInternalEntryPointName) ||
 		(gc.Rest != nil && gc.Rest.EntryPoint == DefaultInternalEntryPointName) {
 		if _, ok := gc.EntryPoints[DefaultInternalEntryPointName]; !ok {
-			gc.EntryPoints[DefaultInternalEntryPointName] = &EntryPoint{Address: ":8080"}
+			gc.EntryPoints[DefaultInternalEntryPointName] = &EntryPoint{Address: ":9090"}
 		}
 	}
 

@@ -310,7 +310,7 @@ func (s *HTTPSSuite) TestWithRootCAsContentForHTTPSOnBackend(c *check.C) {
 	err = try.GetRequest("http://127.0.0.1:8080/api/providers", 1*time.Second, try.BodyContains(backend.URL))
 	c.Assert(err, checker.IsNil)
 
-	err = try.GetRequest("http://127.0.0.1:8081/ping", 1*time.Second, try.StatusCodeIs(http.StatusOK))
+	err = try.GetRequest("http://127.0.0.1:9090/ping", 1*time.Second, try.StatusCodeIs(http.StatusOK))
 	c.Assert(err, checker.IsNil)
 }
 
@@ -332,7 +332,7 @@ func (s *HTTPSSuite) TestWithRootCAsFileForHTTPSOnBackend(c *check.C) {
 	err = try.GetRequest("http://127.0.0.1:8080/api/providers", 1*time.Second, try.BodyContains(backend.URL))
 	c.Assert(err, checker.IsNil)
 
-	err = try.GetRequest("http://127.0.0.1:8081/ping", 1*time.Second, try.StatusCodeIs(http.StatusOK))
+	err = try.GetRequest("http://127.0.0.1:9090/ping", 1*time.Second, try.StatusCodeIs(http.StatusOK))
 	c.Assert(err, checker.IsNil)
 }
 

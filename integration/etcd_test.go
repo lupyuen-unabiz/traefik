@@ -156,7 +156,7 @@ func (s *EtcdSuite) TestNominalConfiguration(c *check.C) {
 	c.Assert(err, checker.IsNil)
 
 	// wait for Træfik
-	err = try.GetRequest("http://127.0.0.1:8081/api/providers", 60*time.Second, try.BodyContains("Path:/test"))
+	err = try.GetRequest("http://127.0.0.1:9090/api/providers", 60*time.Second, try.BodyContains("Path:/test"))
 	c.Assert(err, checker.IsNil)
 
 	client := &http.Client{}
@@ -549,7 +549,7 @@ func (s *EtcdSuite) TestSNIDynamicTlsConfig(c *check.C) {
 	defer cmd.Process.Kill()
 
 	// wait for Træfik
-	err = try.GetRequest("http://127.0.0.1:8081/api/providers", 60*time.Second, try.BodyContains(string("MIIEpQIBAAKCAQEA1RducBK6EiFDv3TYB8ZcrfKWRVaSfHzWicO3J5WdST9oS7h")))
+	err = try.GetRequest("http://127.0.0.1:9090/api/providers", 60*time.Second, try.BodyContains(string("MIIEpQIBAAKCAQEA1RducBK6EiFDv3TYB8ZcrfKWRVaSfHzWicO3J5WdST9oS7h")))
 	c.Assert(err, checker.IsNil)
 
 	req, err := http.NewRequest(http.MethodGet, "https://127.0.0.1:4443/", nil)
@@ -579,7 +579,7 @@ func (s *EtcdSuite) TestSNIDynamicTlsConfig(c *check.C) {
 	c.Assert(err, checker.IsNil)
 
 	// waiting for Træfik to pull configuration
-	err = try.GetRequest("http://127.0.0.1:8081/api/providers", 30*time.Second, try.BodyContains("MIIEogIBAAKCAQEAvG9kL+vF57+MICehzbqcQAUlAOSl5r"))
+	err = try.GetRequest("http://127.0.0.1:9090/api/providers", 30*time.Second, try.BodyContains("MIIEogIBAAKCAQEAvG9kL+vF57+MICehzbqcQAUlAOSl5r"))
 	c.Assert(err, checker.IsNil)
 
 	req, err = http.NewRequest(http.MethodGet, "https://127.0.0.1:4443/", nil)
