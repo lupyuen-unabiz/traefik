@@ -38,11 +38,13 @@ defaultEntryPoints = ["default"]
     # Web proxy
     [entryPoints.http]
     address = ":8080"
+    whiteListSourceRange = ["127.0.0.1/32"]
     compress = true
 
-        ## [entryPoints.http.redirect]
-        ## regex = "^http://localhost:8080/(.*)"
-        ## replacement = "http://unabellgraph.appspot.com/$1"
+        [entryPoints.http.redirect]
+        passHostHeader = true
+        regex = "^http://(.*)/(.*)"
+        replacement = "http://unabellgraph.appspot.com/$2"
 
     # API
     [entryPoints.api]
@@ -62,16 +64,17 @@ defaultEntryPoints = ["default"]
 
 [frontends]
 
-  [frontends.frontend1]
-  ## entryPoint = "http"
-  ## backend = "backend1"
-  ## passHostHeader = true
+  # [frontends.frontend1]
+  # entryPoint = "http"
+  # passHostHeader = true
 
-      [frontends.frontend1.redirect]
-      entryPoint = "http"
-      regex = "^http://(.*)/(.*)"
-      replacement = "http://unabellgraph.appspot.com/$2"
-      passHostHeader = true
+  ## backend = "backend1"
+
+      # [frontends.frontend1.redirect]
+      # entryPoint = "http"
+      # passHostHeader = true
+      # regex = "^http://(.*)/(.*)"
+      # replacement = "http://unabellgraph.appspot.com/$2"
 
 ################################################################
 # Backends configuration
