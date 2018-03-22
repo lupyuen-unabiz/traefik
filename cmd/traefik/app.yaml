@@ -33,3 +33,4 @@ readiness_check:
 
 skip_files:
 - ^vendor/.*$
+- ^vendor.zip$

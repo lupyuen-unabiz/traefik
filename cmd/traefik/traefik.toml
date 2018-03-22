@@ -25,6 +25,16 @@ logLevel = "DEBUG"
 
 defaultEntryPoints = ["default"]
 
+# Enable retry sending request if network error
+[retry]
+
+# Number of attempts
+#
+# Optional
+# Default: (number servers in backend) -1
+
+attempts = 3
+
 ################################################################ endregion
 # Entrypoints configuration
 ################################################################
@@ -69,8 +79,8 @@ defaultEntryPoints = ["default"]
 # Enabled by default and log to stdout
 #
 # Optional
-#
-# [traefikLog]
+
+[traefikLog]
 
 # Sets the filepath for the traefik log. If not specified, stdout will be used.
 # Intermediate directories are created if necessary.
@@ -84,8 +94,8 @@ defaultEntryPoints = ["default"]
 #
 # Optional
 # Default: "common"
-#
-# format = "common"
+
+format = "json"
 
 ################################################################
 # Access logs configuration
@@ -96,8 +106,8 @@ defaultEntryPoints = ["default"]
 # Common Log Format (CLF), extended with additional fields.
 #
 # Optional
-#
-# [accessLog]
+
+[accessLog]
 
 # Sets the file path for the access log. If not specified, stdout will be used.
 # Intermediate directories are created if necessary.
