@@ -43,16 +43,6 @@ defaultEntryPoints = ["default"]
     # whiteListSourceRange = ["0.0.0.0/0"]
     # compress = true
 
-    # Enable Forwarded Headers
-    [entryPoints.http.forwardedHeaders]
-
-      # List of trusted IPs
-      #
-      # Required
-      # Default: []
-      #
-      trustedIPs = ["0.0.0.0/0"]
-
         # [entryPoints.http.redirect]
         # entryPoint = "http"
         # passHostHeader = true
@@ -228,7 +218,7 @@ format = "json"
   [backends.backend1]
 
     [backends.backend1.servers.server1]
-    url = "http://unabellgraph.appspot.com"
+    url = "http://unabellgraph.appspot.com:80"
     weight = 10
 
     [backends.backend1.loadBalancer]
