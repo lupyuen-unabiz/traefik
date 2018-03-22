@@ -6,7 +6,6 @@
 #
 # Optional
 # Default: false
-#
 
 debug = true
 
@@ -14,7 +13,6 @@ debug = true
 #
 # Optional
 # Default: "ERROR"
-#
 
 logLevel = "DEBUG"
 
@@ -23,7 +21,6 @@ logLevel = "DEBUG"
 #
 # Optional
 # Default: ["http"]
-#
 
 defaultEntryPoints = ["http"]
 
@@ -34,7 +31,6 @@ defaultEntryPoints = ["http"]
 # Entrypoints definition
 #
 # Optional
-# Default:
 
 [entryPoints]
     [entryPoints.http]
