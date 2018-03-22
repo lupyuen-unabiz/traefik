@@ -38,10 +38,20 @@ defaultEntryPoints = ["default"]
     # Web proxy
     [entryPoints.http]
     address = ":8080"
-    passHostHeader = true
 
+    # passHostHeader = true
     # whiteListSourceRange = ["0.0.0.0/0"]
     # compress = true
+
+    # Enable Forwarded Headers
+    [entryPoints.http.forwardedHeaders]
+
+      # List of trusted IPs
+      #
+      # Required
+      # Default: []
+      #
+      trustedIPs = ["0.0.0.0/0"]
 
         # [entryPoints.http.redirect]
         # entryPoint = "http"
@@ -49,12 +59,12 @@ defaultEntryPoints = ["default"]
         # regex = "^http://(.*)/(.*)"
         # replacement = "http://unabellgraph.appspot.com/$2"
 
-    # API
+    # API & Dashboard
     [entryPoints.api]
     address = ":8081"
 
-    # Mgmt functions
-    [entryPoints.traefik]
+    # Ping
+    [entryPoints.ping]
     address = ":8082"
 
     # Default for unconfigured services
@@ -126,7 +136,7 @@ format = "json"
   # Optional
   # Default: "traefik"
 
-  entryPoint = "traefik"
+  entryPoint = "api"
 
   # Enabled Dashboard
   #
@@ -134,6 +144,16 @@ format = "json"
   # Default: true
 
   dashboard = true
+
+  # Enable debug mode.
+  # This will install HTTP handlers to expose Go expvars under /debug/vars and
+  # pprof profiling data under /debug/pprof.
+  # Additionally, the log level will be set to DEBUG.
+  #
+  # Optional
+  # Default: false
+
+  debug = true
 
 ################################################################
 # Ping configuration
@@ -147,7 +167,7 @@ format = "json"
   # Optional
   # Default: "traefik"
 
-  entryPoint = "traefik"
+  entryPoint = "ping"
 
 ################################################################
 # Docker configuration backend
