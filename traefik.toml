@@ -211,7 +211,6 @@ format = "json"
   [frontends.frontend1]
   backend = "backend1"
   entrypoints = ["http"]
-
   # passHostHeader = true
 
       # [frontends.frontend1.redirect]
