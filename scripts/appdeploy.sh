@@ -12,6 +12,9 @@
 export GCLOUD_PROJECT=
 . .env
 
+echo GOROOT=${GOROOT}
+echo GOPATH=${GOPATH}
+
 # Deploy to Google Cloud.
 gcloud config set project ${GCLOUD_PROJECT}
 gcloud config list project
