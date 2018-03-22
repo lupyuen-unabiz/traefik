@@ -7,7 +7,8 @@ import (
 	"regexp"
 
 	"github.com/mitchellh/copystructure"
-	"github.com/mvdan/xurls"
+	//// "github.com/mvdan/xurls"
+	"mvdan.cc/xurls"
 )
 
 const (

@@ -104,3 +104,7 @@ go get github.com/google/go-github/github
 go get github.com/hashicorp/go-version
 go get github.com/unrolled/render
 go get github.com/pkg/errors
+
+go get github.com/mesos/mesos-go/detector
+go get gopkg.in/fsnotify.v1
+go get mvdan.cc/xurls
