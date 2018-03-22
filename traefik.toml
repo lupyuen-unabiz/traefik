@@ -61,50 +61,6 @@ defaultEntryPoints = ["default"]
     address = ":8083"
 
 ################################################################
-# Frontends configuration
-################################################################
-
-[frontends]
-
-  [frontends.frontend1]
-  backend = "backend1"
-  passHostHeader = true
-  passTLSCert = true
-  entrypoints = ["http"]
-
-      # [frontends.frontend1.redirect]
-      # entryPoint = "http"
-      # passHostHeader = true
-      # regex = "^http://(.*)/(.*)"
-      # replacement = "http://unabellgraph.appspot.com/$2"
-
-################################################################
-# Backends configuration
-################################################################
-
-[backends]
-
-  [backends.backend1]
-
-    [backends.backend1.servers.server1]
-    url = "http://74.125.200.153:80"
-
-    # url = "http://unabellgraph.appspot.com:80"
-    # weight = 10
-
-    # [backends.backend1.circuitbreaker]
-    # expression = "NetworkErrorRatio() > 0.5"
-
-  # [backends.backend2]
-
-    # [backends.backend2.circuitbreaker]
-    # expression = "NetworkErrorRatio() > 0.5"
-
-    # [backends.backend2.servers.server2]
-    # url = "http://test-unabell-mobile-server.appspot.com:80"
-    # weight = 10
-
-################################################################
 # Traefik logs configuration
 ################################################################
 
@@ -220,3 +176,52 @@ defaultEntryPoints = ["default"]
 # Default: true
 #
 # exposedbydefault = false
+
+# [file] Must be at the end
+[file]
+
+
+################################################################
+# Frontends configuration
+################################################################
+
+[frontends]
+
+  [frontends.frontend1]
+  backend = "backend1"
+  passHostHeader = true
+  passTLSCert = true
+  entrypoints = ["http"]
+
+      # [frontends.frontend1.redirect]
+      # entryPoint = "http"
+      # passHostHeader = true
+      # regex = "^http://(.*)/(.*)"
+      # replacement = "http://unabellgraph.appspot.com/$2"
+
+################################################################
+# Backends configuration
+################################################################
+
+[backends]
+
+  [backends.backend1]
+
+    [backends.backend1.servers.server1]
+    url = "http://74.125.200.153:80"
+
+    # url = "http://unabellgraph.appspot.com:80"
+    # weight = 10
+
+    # [backends.backend1.circuitbreaker]
+    # expression = "NetworkErrorRatio() > 0.5"
+
+  # [backends.backend2]
+
+    # [backends.backend2.circuitbreaker]
+    # expression = "NetworkErrorRatio() > 0.5"
+
+    # [backends.backend2.servers.server2]
+    # url = "http://test-unabell-mobile-server.appspot.com:80"
+    # weight = 10
+
