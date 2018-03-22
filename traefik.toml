@@ -3,6 +3,7 @@
 ################################################################
 
 # Enable debug mode
+# http://localhost:8082/debug/vars
 #
 # Optional
 # Default: false
@@ -22,7 +23,7 @@ logLevel = "DEBUG"
 # Optional
 # Default: ["http"]
 
-defaultEntryPoints = ["http"]
+defaultEntryPoints = ["default"]
 
 ################################################################
 # Entrypoints configuration
@@ -33,11 +34,21 @@ defaultEntryPoints = ["http"]
 # Optional
 
 [entryPoints]
+    # Web proxy
     [entryPoints.http]
     address = ":8080"
 
+    # API
     [entryPoints.api]
     address = ":8081"
+
+    # Mgmt functions
+    [entryPoints.traefik]
+    address = ":8082"
+
+    # Default for unconfigured services
+    [entryPoints.default]
+    address = ":8083"
 
 ################################################################
 # Frontends configuration
