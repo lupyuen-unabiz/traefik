@@ -108,7 +108,8 @@ dist:
 
 run-dev:
 	go generate
-	go build ./cmd/traefik
+	#### Lup Yuen go build ./cmd/traefik
+	go build ./traefik.go
 	./traefik
 
 generate-webui: build-webui

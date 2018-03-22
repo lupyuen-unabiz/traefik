@@ -96,6 +96,9 @@ Complete documentation is available at https://traefik.io`,
 	// staert init
 	s := staert.NewStaert(traefikCmd)
 	// init TOML source
+
+	//// traefikConfiguration.ConfigFile = "traefik.sample.toml" ////
+
 	toml := staert.NewTomlSource("traefik", []string{traefikConfiguration.ConfigFile, "/etc/traefik/", "$HOME/.traefik/", "."})
 
 	// add sources to staert
