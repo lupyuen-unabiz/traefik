@@ -34,9 +34,15 @@ defaultEntryPoints = ["default"]
 # Optional
 
 [entryPoints]
+
     # Web proxy
     [entryPoints.http]
     address = ":8080"
+    compress = true
+
+        ## [entryPoints.http.redirect]
+        ## regex = "^http://localhost:8080/(.*)"
+        ## replacement = "http://unabellgraph.appspot.com/$1"
 
     # API
     [entryPoints.api]
@@ -55,15 +61,26 @@ defaultEntryPoints = ["default"]
 ################################################################
 
 [frontends]
+
   [frontends.frontend1]
-  backend = "backend1"
+  ## entryPoint = "http"
+  ## backend = "backend1"
+  ## passHostHeader = true
+
+      [frontends.frontend1.redirect]
+      entryPoint = "http"
+      regex = "^http://(.*)/(.*)"
+      replacement = "http://unabellgraph.appspot.com/$2"
+      passHostHeader = true
 
 ################################################################
 # Backends configuration
 ################################################################
 
 [backends]
+
   [backends.backend1]
+
     [backends.backend1.circuitbreaker]
     expression = "NetworkErrorRatio() > 0.5"
 
@@ -72,6 +89,7 @@ defaultEntryPoints = ["default"]
     weight = 10
 
   [backends.backend2]
+
     [backends.backend2.circuitbreaker]
     expression = "NetworkErrorRatio() > 0.5"
 

@@ -1,7 +1,11 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Luppy">
     <words>
+      <w>backends</w>
+      <w>circuitbreaker</w>
       <w>exposedbydefault</w>
+      <w>filepath</w>
+      <w>frontends</w>
       <w>traefik</w>
       <w>unconfigured</w>
     </words>
