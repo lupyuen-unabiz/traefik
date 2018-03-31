@@ -179,16 +179,18 @@ format = "json"
 
 [frontends]
 
-  [frontends.frontend1]
-  backend = "backend1"
+  [frontends.testclient]
   entrypoints = ["http"]
-  # passHostHeader = true
+  priority = 1000
+  backend = "newbackend"
 
-      # [frontends.frontend1.redirect]
-      # entryPoint = "http"
-      # passHostHeader = true
-      # regex = "^http://(.*)/(.*)"
-      # replacement = "http://unabellgraph.appspot.com/$2"
+    [frontends.testclient.routes.test]
+    rule = "Authorization: (.*)2mmxYCKaC71ydgal3vexbXLGC19ZgEmSVATufVCCfZmmZ(.*)"
+
+  [frontends.otherclients]
+  entrypoints = ["http"]
+  priority = 500
+  backend = "oldbackend"
 
 ################################################################
 # Backends configuration
@@ -196,36 +198,20 @@ format = "json"
 
 [backends]
 
-  [backends.backend1]
+  [backends.oldbackend]
 
-    [backends.backend1.servers.server1]
+    [backends.oldbackend.servers.server1]
     url = "http://nodejs-dot-unabellgraph.appspot.com:80"
     weight = 10
 
-    [backends.backend1.loadBalancer]
-      method = "drr"
+    [backends.oldbackend.loadBalancer]
+    method = "drr"
 
-      # [backends.backend1.loadBalancer.stickiness]
-        # cookieName = "foobar"
+  [backends.newbackend]
 
-    # [backends.backend1.maxConn]
-      # amount = 10
-      # extractorfunc = "request.host"
+    [backends.newbackend.servers.server1]
+    url = "http://test-unabell-mobile-server.appspot.com:80"
+    weight = 10
 
-    # [backends.backend1.healthCheck]
-      # path = "/health"
-      # port = 88
-      # interval = "30s"
-
-    # [backends.backend1.circuitbreaker]
-    # expression = "NetworkErrorRatio() > 0.5"
-
-  # [backends.backend2]
-
-    # [backends.backend2.circuitbreaker]
-    # expression = "NetworkErrorRatio() > 0.5"
-
-    # [backends.backend2.servers.server2]
-    # url = "http://test-unabell-mobile-server.appspot.com:80"
-    # weight = 10
-
+    [backends.newbackend.loadBalancer]
+    method = "drr"
