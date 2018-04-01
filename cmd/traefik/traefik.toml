@@ -1,47 +1,23 @@
-################################################################ region
-# Global configuration
 ################################################################
+# Global configuration
 
-# Enable debug mode
-# http://localhost:8082/debug/vars
-#
-# Optional
-# Default: false
-
+# Enable debug mode - http://localhost:8082/debug/vars. Default: false
 debug = true
 
-# Log levelcd cmd
-#
-# Optional
-# Default: "ERROR"
-
+# Log levelcd cmd. Default: "ERROR"
 logLevel = "DEBUG"
 
-# Entrypoints to be used by frontends that do not specify any entrypoint.
-# Each frontend can specify its own entrypoints.
-#
-# Optional
-# Default: ["http"]
-
+# Entrypoints to be used by frontends that do not specify any entrypoint. Default: ["http"]
 defaultEntryPoints = ["default"]
 
 # Enable retry sending request if network error
 [retry]
 
-# Number of attempts
-#
-# Optional
-# Default: (number servers in backend) -1
-
+# Number of attempts. Default: (number servers in backend) -1
 attempts = 3
 
-################################################################ endregion
-# Entrypoints configuration
 ################################################################
-
-# Entrypoints definition
-#
-# Optional
+# Entrypoints configuration
 
 [entryPoints]
 
@@ -49,15 +25,6 @@ attempts = 3
     [entryPoints.http]
     address = ":8080"
     compress = true
-
-    # passHostHeader = true
-    # whiteListSourceRange = ["0.0.0.0/0"]
-
-        # [entryPoints.http.redirect]
-        # entryPoint = "http"
-        # passHostHeader = true
-        # regex = "^http://(.*)/(.*)"
-        # replacement = "http://unabellgraph.appspot.com/$2"
 
     # API & Dashboard
     [entryPoints.api]
@@ -73,100 +40,54 @@ attempts = 3
 
 ################################################################
 # Traefik logs configuration
-################################################################
 
-# Traefik logs
-# Enabled by default and log to stdout
-#
-# Optional
-
+# Traefik logs: Enabled by default and log to stdout
 [traefikLog]
 
 # Sets the filepath for the traefik log. If not specified, stdout will be used.
-# Intermediate directories are created if necessary.
-#
-# Optional
-# Default: os.Stdout
-#
+# Intermediate directories are created if necessary. Default: os.Stdout
 # filePath = "log/traefik.log"
 
-# Format is either "json" or "common".
-#
-# Optional
-# Default: "common"
-
+# Format is either "json" or "common". Default: "common"
 format = "json"
 
 ################################################################
 # Access logs configuration
-################################################################
 
-# Enable access logs
-# By default it will write to stdout and produce logs in the textual
+# Enable access logs: By default it will write to stdout and produce logs in the textual
 # Common Log Format (CLF), extended with additional fields.
-#
-# Optional
-
 [accessLog]
 
 # Sets the file path for the access log. If not specified, stdout will be used.
-# Intermediate directories are created if necessary.
-#
-# Optional
-# Default: os.Stdout
-#
+# Intermediate directories are created if necessary. Default: os.Stdout
 # filePath = "/path/to/log/log.txt"
 
-# Format is either "json" or "common".
-#
-# Optional
-# Default: "common"
-
+# Format is either "json" or "common". Default: "common"
 format = "json"
 
 ################################################################
 # API and dashboard configuration
-################################################################
 
 # Enable API and dashboard
 [api]
 
-  # Name of the related entry point
-  #
-  # Optional
-  # Default: "traefik"
-
+  # Name of the related entry point. Default: "traefik"
   entryPoint = "api"
 
-  # Enabled Dashboard
-  #
-  # Optional
-  # Default: true
-
+  # Enabled Dashboard. Default: true
   dashboard = true
 
-  # Enable debug mode.
-  # This will install HTTP handlers to expose Go expvars under /debug/vars and
-  # pprof profiling data under /debug/pprof.
-  # Additionally, the log level will be set to DEBUG.
-  #
-  # Optional
-  # Default: false
-
+  # Enable debug mode. This will install HTTP handlers to expose Go expvars under /debug/vars and pprof profiling data under /debug/pprof.
+  # Additionally, the log level will be set to DEBUG. Default: false
   debug = true
 
 ################################################################
 # Ping configuration
-################################################################
 
 # Enable ping
 [ping]
 
-  # Name of the related entry point
-  #
-  # Optional
-  # Default: "traefik"
-
+  # Name of the related entry point. Default: "traefik"
   entryPoint = "ping"
 
 # [file] Must be at the end
@@ -175,7 +96,6 @@ format = "json"
 
 ################################################################
 # Frontends configuration
-################################################################
 
 [frontends]
 
@@ -194,7 +114,6 @@ format = "json"
 
 ################################################################
 # Backends configuration
-################################################################
 
 [backends]
 
