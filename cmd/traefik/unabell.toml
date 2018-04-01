@@ -1,0 +1,231 @@
+################################################################ region
+# Global configuration
+################################################################
+
+# Enable debug mode
+# http://localhost:8082/debug/vars
+#
+# Optional
+# Default: false
+
+debug = true
+
+# Log levelcd cmd
+#
+# Optional
+# Default: "ERROR"
+
+logLevel = "DEBUG"
+
+# Entrypoints to be used by frontends that do not specify any entrypoint.
+# Each frontend can specify its own entrypoints.
+#
+# Optional
+# Default: ["http"]
+
+defaultEntryPoints = ["default"]
+
+# Enable retry sending request if network error
+[retry]
+
+# Number of attempts
+#
+# Optional
+# Default: (number servers in backend) -1
+
+attempts = 3
+
+################################################################ endregion
+# Entrypoints configuration
+################################################################
+
+# Entrypoints definition
+#
+# Optional
+
+[entryPoints]
+
+    # Web proxy
+    [entryPoints.http]
+    address = ":8080"
+    compress = true
+
+    # passHostHeader = true
+    # whiteListSourceRange = ["0.0.0.0/0"]
+
+        # [entryPoints.http.redirect]
+        # entryPoint = "http"
+        # passHostHeader = true
+        # regex = "^http://(.*)/(.*)"
+        # replacement = "http://unabellgraph.appspot.com/$2"
+
+    # API & Dashboard
+    [entryPoints.api]
+    address = ":8081"
+
+    # Ping
+    [entryPoints.ping]
+    address = ":8082"
+
+    # Default for unconfigured services
+    [entryPoints.default]
+    address = ":8083"
+
+################################################################
+# Traefik logs configuration
+################################################################
+
+# Traefik logs
+# Enabled by default and log to stdout
+#
+# Optional
+
+[traefikLog]
+
+# Sets the filepath for the traefik log. If not specified, stdout will be used.
+# Intermediate directories are created if necessary.
+#
+# Optional
+# Default: os.Stdout
+#
+# filePath = "log/traefik.log"
+
+# Format is either "json" or "common".
+#
+# Optional
+# Default: "common"
+
+format = "json"
+
+################################################################
+# Access logs configuration
+################################################################
+
+# Enable access logs
+# By default it will write to stdout and produce logs in the textual
+# Common Log Format (CLF), extended with additional fields.
+#
+# Optional
+
+[accessLog]
+
+# Sets the file path for the access log. If not specified, stdout will be used.
+# Intermediate directories are created if necessary.
+#
+# Optional
+# Default: os.Stdout
+#
+# filePath = "/path/to/log/log.txt"
+
+# Format is either "json" or "common".
+#
+# Optional
+# Default: "common"
+
+format = "json"
+
+################################################################
+# API and dashboard configuration
+################################################################
+
+# Enable API and dashboard
+[api]
+
+  # Name of the related entry point
+  #
+  # Optional
+  # Default: "traefik"
+
+  entryPoint = "api"
+
+  # Enabled Dashboard
+  #
+  # Optional
+  # Default: true
+
+  dashboard = true
+
+  # Enable debug mode.
+  # This will install HTTP handlers to expose Go expvars under /debug/vars and
+  # pprof profiling data under /debug/pprof.
+  # Additionally, the log level will be set to DEBUG.
+  #
+  # Optional
+  # Default: false
+
+  debug = true
+
+################################################################
+# Ping configuration
+################################################################
+
+# Enable ping
+[ping]
+
+  # Name of the related entry point
+  #
+  # Optional
+  # Default: "traefik"
+
+  entryPoint = "ping"
+
+# [file] Must be at the end
+
+[file]
+
+################################################################
+# Frontends configuration
+################################################################
+
+[frontends]
+
+  [frontends.frontend1]
+  backend = "backend1"
+  entrypoints = ["http"]
+  # passHostHeader = true
+
+      # [frontends.frontend1.redirect]
+      # entryPoint = "http"
+      # passHostHeader = true
+      # regex = "^http://(.*)/(.*)"
+      # replacement = "http://unabellgraph.appspot.com/$2"
+
+################################################################
+# Backends configuration
+################################################################
+
+[backends]
+
+  [backends.backend1]
+
+    [backends.backend1.servers.server1]
+    url = "http://nodejs-dot-unabellgraph.appspot.com:80"
+    weight = 10
+
+    [backends.backend1.loadBalancer]
+      method = "drr"
+
+      # [backends.backend1.loadBalancer.stickiness]
+        # cookieName = "foobar"
+
+    # [backends.backend1.maxConn]
+      # amount = 10
+      # extractorfunc = "request.host"
+
+    # [backends.backend1.healthCheck]
+      # path = "/health"
+      # port = 88
+      # interval = "30s"
+
+    # [backends.backend1.circuitbreaker]
+    # expression = "NetworkErrorRatio() > 0.5"
+
+  # [backends.backend2]
+
+    # [backends.backend2.circuitbreaker]
+    # expression = "NetworkErrorRatio() > 0.5"
+
+    # [backends.backend2.servers.server2]
+    # url = "http://test-unabell-mobile-server.appspot.com:80"
+    # weight = 10
+
